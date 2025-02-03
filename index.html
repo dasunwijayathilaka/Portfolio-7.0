@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra Modern Portfolio</title>
+    <link href="assets/styles/new.css" rel="stylesheet">
+</head>
+<body>
+<div class="background-particles" id="particles"></div>
+
+<nav class="navbar">
+    <div class="nav-content">
+        <a href="#" class="logo">Portfolio</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#about">Educations</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#skills">Achivements</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#projects">Asigments</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Creating Digital <span>Experiences</span></h1>
+        <p>Frontend Developer & UI/UX Designer</p>
+        <button class="cta-button">Explore My Work</button>
+    </div>
+</section>
+
+<section id="About">
+    <h2 class="section-title">My <span>About</span></h2>
+    <div class="About-grid">
+        <!-- Add your About cards here -->
+    </div>
+</section>
+<section id="Educations">
+    <h2 class="section-title">My <span>Educations</span></h2>
+    <div class="Educations-grid">
+        <!-- Add your Educations cards here -->
+    </div>
+</section>
+<section id="skills">
+    <h2 class="section-title">My <span>Skills</span></h2>
+    <div class="skills-grid">
+        <!-- Add your skill cards here -->
+    </div>
+</section>
+
+<section id="projects">
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+    <div class="projects-grid">
+        <!-- Add your project cards here -->
+    </div>
+</section>
+<section id="Asigments">
+    <h2 class="section-title">Featured <span>Asigments</span></h2>
+    <div class="Asigments-grid">
+        <!-- Add your Asigments cards here -->
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">Get in <span>Touch</span></h2>
+    <form class="contact-form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Send Message</button>
+    </form>
+</section>
+
+
+<script src="assets/JQuary/jquery-3.7.1.min.js"></script>
+<script>
+    // Create floating particles
+    function createParticles() {
+        const container = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            container.appendChild(particle);
+        }
+    }
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // Observe elements
+    document.addEventListener('DOMContentLoaded', () => {
+        createParticles();
+
+        document.querySelectorAll('.section-title, .skill-card, .project-card').forEach(el => {
+            observer.observe(el);
+        });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Form handling
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Add your form submission logic here
+        alert('Message sent successfully!');
+        e.target.reset();
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
